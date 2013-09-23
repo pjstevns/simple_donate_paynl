@@ -279,8 +279,13 @@ function paynl_ob_start() {
 	ob_start();
 }
 
+function paynl_register_widget()
+{
+	register_widget('Simple_Donate_Paynl');
+}
+
 add_action('init', 'paynl_ob_start');
-add_action('widgets_init', function() {register_widget('Simple_Donate_Paynl'); } );
+add_action('widgets_init', 'paynl_register_widget');
 
 
 ?>
