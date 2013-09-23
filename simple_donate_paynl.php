@@ -6,7 +6,8 @@ Description: A real simple donation widget for iDeal
 Version: 0.1
 Author: Paul J Stevens
 Author URI: http://github.com/pjstevns/
-License: GPLv3
+License: GPLv2
+Text Domain: simple_donate
 */
 
 require_once 'Transaction.php';
@@ -43,7 +44,7 @@ class Simple_Donate_Paynl extends WP_Widget {
 		if ($result['status'] == 'PAID')
 			$msg = $instance['thanks'];
 		else
-			$msg = $instance['sorry'] . " : " . $result['status'];
+			$msg = $instance['sorry'] . "<br/><em>" . $result['status'] . "</em>";
 		printf("<p>%s</p>", $msg);
 	}
 
@@ -63,8 +64,8 @@ class Simple_Donate_Paynl extends WP_Widget {
 				intval($_POST['payment_profile']),
 				array('extra1' => $instance['description']));
 		} catch(Exception $e) {
-			echo "<p>Betaling kon niet worden aangemaakt.</p>";
-			echo "<p>" . $e->getMessage() . "</p>";
+			echo "<p>Unable to create payment.</p>";
+			echo sprintf("<p>%s</p>" . $e->getMessage());
 			exit;
 		}
 
@@ -89,7 +90,7 @@ class Simple_Donate_Paynl extends WP_Widget {
 			}
 		}
 ?>
-		<input type="submit" value="Betalen"?>
+		<input type="submit" value="<? _e('Pay', 'simple_donate')?>"?>
 		</form>
 <?php
 	}
@@ -118,7 +119,7 @@ class Simple_Donate_Paynl extends WP_Widget {
 		<label for="amount">&euro;</label>
 		<input class="widefat" id="simple_donate_amount" name="amount"
 			type="text" value="10.00" />
-		<input type="submit" value="<? echo __('Doneer!', 'simple_donate'); ?>"/>
+		<input type="submit" value="<? _e('Donate!', 'simple_donate'); ?>"/>
 		</form>
 <?
 		}
@@ -131,33 +132,33 @@ class Simple_Donate_Paynl extends WP_Widget {
 		if (isset($instance['title'])) {
 			$title = $instance['title'];
 		} else {
-			$title = __('New title', 'simple_donate');
+			$title = __('Title', 'simple_donate');
 		}
 
 		if (isset($instance['account_id'])) {
 			$account_id = $instance['account_id'];
 		} else {
-			$account_id = __('Pay.nl account ID', 'simple_donate');
+			$account_id = __('Account ID', 'simple_donate');
 		}
 		if (isset($instance['program_id'])) {
 			$program_id = $instance['program_id'];
 		} else {
-			$program_id = __('Pay.nl program ID', 'simple_donate');
+			$program_id = __('Program ID', 'simple_donate');
 		}
 		if (isset($instance['website_id'])) {
 			$website_id = $instance['website_id'];
 		} else {
-			$website_id = __('Pay.nl website ID', 'simple_donate');
+			$website_id = __('Website ID', 'simple_donate');
 		}
 		if (isset($instance['location_id'])) {
 			$location_id = $instance['location_id'];
 		} else {
-			$location_id = __('Pay.NL location ID', 'simple_donate');
+			$location_id = __('Location ID', 'simple_donate');
 		}
 		if (isset($instance['token'])) {
 			$token = $instance['token'];
 		} else {
-			$token = __('Pay.nl token', 'simple_donate');
+			$token = __('Token', 'simple_donate');
 		}
 		if (isset($instance['email_address'])) {
 			$email_address = $instance['email_address'];
@@ -194,65 +195,53 @@ class Simple_Donate_Paynl extends WP_Widget {
 
 
 ?>
-	<p>
-	<label for="<?php echo $this->get_field_name('title'); ?>"><?php _e('Title:'); ?></label>
+	<p> <label for="<?php echo $this->get_field_name('title'); ?>"><?php _e('Title', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('title');?>" name="<?php echo $this->get_field_name('title'); ?>"
-		type="text" value="<?php echo esc_attr($title); ?>" />
-	</p>
+		type="text" value="<?php echo esc_attr($title); ?>" /></p>
 
-	<p><label for="<?php echo $this->get_field_name('account_id'); ?>"><?php _e('Account ID:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('account_id'); ?>"><?php _e('Account ID', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('account_id');?>" name="<?php echo $this->get_field_name('account_id'); ?>"
 		type="text" value="<?php echo esc_attr($account_id); ?>" /></p>
 
-	<p><label for="<?php echo $this->get_field_name('program_id'); ?>"><?php _e('Program ID:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('program_id'); ?>"><?php _e('Program ID', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('program_id');?>" name="<?php echo $this->get_field_name('program_id'); ?>"
 		type="text" value="<?php echo esc_attr($program_id); ?>" /></p>
 
-	<p><label for="<?php echo $this->get_field_name('website_id'); ?>"><?php _e('Website ID:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('website_id'); ?>"><?php _e('Website ID', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('website_id');?>" name="<?php echo $this->get_field_name('website_id'); ?>"
 		type="text" value="<?php echo esc_attr($website_id); ?>" /></p>
 
-	<p><label for="<?php echo $this->get_field_name('location_id'); ?>"><?php _e('Location ID:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('location_id'); ?>"><?php _e('Location ID', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('location_id');?>" name="<?php echo $this->get_field_name('location_id'); ?>"
 		type="text" value="<?php echo esc_attr($location_id); ?>" /></p>
 
-	<p><label for="<?php echo $this->get_field_name('token'); ?>"><?php _e('Token:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('token'); ?>"><?php _e('Token', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('token');?>" name="<?php echo $this->get_field_name('token'); ?>"
 		type="text" value="<?php echo esc_attr($token); ?>" /></p>
 
-	<p><label for="<?php echo $this->get_field_name('email_address'); ?>"><?php _e('E-mail address:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('email_address'); ?>"><?php _e('E-mail address', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('email_address');?>" name="<?php echo $this->get_field_name('email_address'); ?>"
 		type="text" value="<?php echo esc_attr($email_address); ?>" /></p>
 
-	<p>
-	<label for="<?php echo $this->get_field_name('description'); ?>"><?php _e('Description transaction:'); ?></label>
+	<p> <label for="<?php echo $this->get_field_name('description'); ?>"><?php _e('Description transaction', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('description');?>" name="<?php echo $this->get_field_name('description'); ?>"
-		type="text" value="<?php echo esc_attr($description); ?>" />
-	</p>
+		type="text" value="<?php echo esc_attr($description); ?>" /></p>
 
-	<p>
-	<label for="<?php echo $this->get_field_name('exchange_url'); ?>"><?php _e('Exchange URL:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('exchange_url'); ?>"><?php _e('Exchange URL', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('exchange_url');?>" name="<?php echo $this->get_field_name('exchange_url'); ?>"
-		type="text" value="<?php echo esc_attr($exchange_url); ?>" />
-	</p>
+		type="text" value="<?php echo esc_attr($exchange_url); ?>" /></p>
 
-	<p>
-	<label for="<?php echo $this->get_field_name('thanks'); ?>"><?php _e('"Thank you" message:'); ?></label>
+	<p> <label for="<?php echo $this->get_field_name('thanks'); ?>"><?php _e('"Thank you" message', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('thanks');?>" name="<?php echo $this->get_field_name('thanks'); ?>"
-		type="text" value="<?php echo esc_attr($thanks); ?>" />
-	</p>
+		type="text" value="<?php echo esc_attr($thanks); ?>" /></p>
 
-	<p>
-	<label for="<?php echo $this->get_field_name('sorry'); ?>"><?php _e('"Sorry" message:'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('sorry'); ?>"><?php _e('"Sorry" message', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('sorry');?>" name="<?php echo $this->get_field_name('sorry'); ?>"
-		type="text" value="<?php echo esc_attr($sorry); ?>" />
-	</p>
+		type="text" value="<?php echo esc_attr($sorry); ?>" /></p>
 
-	<p>
-	<label for="<?php echo $this->get_field_name('debug'); ?>"><?php _e('Test mode'); ?></label>
+	<p><label for="<?php echo $this->get_field_name('debug'); ?>"><?php _e('Test mode', 'simple_donate'); ?></label>
 	<input class="widefat" id="<?php echo $this->get_field_id('debug');?>" name="<?php echo $this->get_field_name('debug'); ?>"
-		type="checkbox" <?php echo $debug?"checked":"" ?> />
-	</p>
+		type="checkbox" <?php echo $debug?"checked":"" ?> /></p>
 <?
 	}
 
@@ -284,8 +273,11 @@ function paynl_register_widget()
 	register_widget('Simple_Donate_Paynl');
 }
 
+// no lambda/closures here to allow php < 5.3
 add_action('init', 'paynl_ob_start');
 add_action('widgets_init', 'paynl_register_widget');
 
+$plugin_dir = basename(dirname(__FILE__));
+load_plugin_textdomain('simple_donate', null, $plugin_dir . '/i18n');
 
 ?>

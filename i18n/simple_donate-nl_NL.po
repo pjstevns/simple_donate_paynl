@@ -1,0 +1,97 @@
+# Copyright (C) 2013 Simple Donate - pay.nl
+# This file is distributed under the same license as the Simple Donate - pay.nl package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Donate - pay.nl 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/simple_donate_paynl\n"
+"POT-Creation-Date: 2013-09-23 14:02:49+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: simple_donate_paynl.php:20
+msgid "A Simple Donation Widget"
+msgstr "Een Eenvoudige Donatie Widget"
+
+#: simple_donate_paynl.php:92
+msgid "Pay"
+msgstr "Betaal"
+
+#: simple_donate_paynl.php:121
+msgid "Donate!"
+msgstr "Doneer!"
+
+#: simple_donate_paynl.php:134 simple_donate_paynl.php:197
+msgid "Title"
+msgstr "Titel"
+
+#: simple_donate_paynl.php:140 simple_donate_paynl.php:201
+msgid "Account ID"
+msgstr ""
+
+#: simple_donate_paynl.php:145 simple_donate_paynl.php:205
+msgid "Program ID"
+msgstr ""
+
+#: simple_donate_paynl.php:150 simple_donate_paynl.php:209
+msgid "Website ID"
+msgstr ""
+
+#: simple_donate_paynl.php:155 simple_donate_paynl.php:213
+msgid "Location ID"
+msgstr ""
+
+#: simple_donate_paynl.php:160 simple_donate_paynl.php:217
+msgid "Token"
+msgstr ""
+
+#: simple_donate_paynl.php:165
+msgid "Notification address"
+msgstr "Notificatie adres"
+
+#: simple_donate_paynl.php:171 simple_donate_paynl.php:225
+msgid "Description transaction"
+msgstr "Omschrijving transactie"
+
+#: simple_donate_paynl.php:176 simple_donate_paynl.php:229
+msgid "Exchange URL"
+msgstr ""
+
+#: simple_donate_paynl.php:182 simple_donate_paynl.php:233
+msgid "\"Thank you\" message"
+msgstr "\"Bedankt\" bericht"
+
+#: simple_donate_paynl.php:187 simple_donate_paynl.php:237
+msgid "\"Sorry\" message"
+msgstr "\"Sorry\" bericht"
+
+#: simple_donate_paynl.php:221
+msgid "E-mail address"
+msgstr "E-mail adres"
+
+#: simple_donate_paynl.php:241
+msgid "Test mode"
+msgstr "Test Modus"
+
+#. Plugin Name of the plugin/theme
+msgid "Simple Donate - pay.nl"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://github.com/pjstevns/simple_donate_paynl"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A real simple donation widget for iDeal"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Paul J Stevens"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://github.com/pjstevns/"
+msgstr ""
